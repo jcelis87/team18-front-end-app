@@ -19,7 +19,7 @@ app.layout = html.Div(
         dcc.Location(id="url", refresh=False),
         main_nav.layout,
         main_content.layout,
-        # main_footer.layout,
+        #main_footer.layout,
     ],
 )
 

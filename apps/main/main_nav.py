@@ -13,17 +13,18 @@ SIDEBAR_STYLE = {
     "left": 0,
     "bottom": 0,
     "width": "16rem",
-    "padding": "2rem 1rem",
+    "padding": "4rem 2rem 1rem",
     "background-color": "#f8f9fa",
-    "z-index": "1",
+    "z-index": "-1",
 }
 
 # the styles for the main content position it to the right of the sidebar and
 # add some padding.
 CONTENT_STYLE = {
+    #"width":"16rem",
     "margin-left": "18rem",
     "margin-right": "2rem",
-    "padding": "2rem 1rem",
+    #"padding": "2rem 1rem",
 }
 
 sidebar = html.Div(
@@ -34,8 +35,8 @@ sidebar = html.Div(
         dbc.Nav(
             [
                 dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Page 1", href="/page-1", active="exact"),
-                dbc.NavLink("Page 2", href="/page-2", active="exact"),
+                dbc.NavLink("Nueva Imagen", href="/page-1", active="exact"),
+                dbc.NavLink("Analisis", href="/page-2", active="exact"),
             ],
             vertical=True,
             pills=True,
@@ -44,6 +45,33 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
+
+IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
+
+navbar = dbc.Navbar(
+    [
+        html.A(
+            # Use row and col to control vertical alignment of logo / brand
+            dbc.Row(
+                [
+                    dbc.Col(html.Img(src=IGAC_LOGO, height="100px")),
+                    dbc.Col(dbc.NavbarBrand("IGAC", className="ml-2")),
+                ],
+                align="center",
+                no_gutters=True,
+            ),
+            href="https://www.igac.gov.co/",
+        ),
+        dbc.NavbarToggler(id="navbar-toggler"),
+        #dbc.Collapse(search_bar, id="navbar-collapse", navbar=True),
+    ],
+    color="dark",
+    dark=True,
+)
+
+
+
 content = html.Div(style=CONTENT_STYLE)
 
-layout = html.Div([sidebar, content])
+
+layout = html.Div([navbar, sidebar, content])
