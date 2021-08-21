@@ -21,35 +21,32 @@ SIDEBAR_STYLE = {
 # the styles for the main content position it to the right of the sidebar and
 # add some padding.
 CONTENT_STYLE = {
-    #"width":"16rem",
+    "width":"16rem",
     "margin-left": "18rem",
     "margin-right": "2rem",
-    #"padding": "2rem 1rem",
+    "padding": "2rem 1rem",
 }
 
-layout = html.Div(
+sidebar = html.Div(
     [
         html.H2("Sidebar", className="display-4"),
         html.Hr(),
         html.P("A simple sidebar layout with navigation links", className="lead"),
+        
         dbc.Nav(
             [
-                dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Nueva Imagen", href="/page-1", active="exact"),
-                dbc.NavLink("Analisis", href="/page-2", active="exact"),
+                dbc.NavLink("Home",id="home" ,href="apps/home/layout_home", active="exact",external_link=True),
+                dbc.NavLink("Nueva Imagen",id="imagen" ,href="/apps/home/layout_imagen", active="exact",external_link=True),
+                dbc.NavLink("Analisis", id="analisis",href="/apps/home/layout_analisis", active="exact",external_link=True),
             ],
             vertical=True,
             pills=True,
         ),
+        #html.Div(id='page-content', children=[])
     ],
     style=SIDEBAR_STYLE,
 )
 
-<<<<<<< HEAD
-# content = html.Div(style=CONTENT_STYLE)
-
-# html.Div([sidebar])
-=======
 
 IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
 
@@ -70,14 +67,12 @@ navbar = dbc.Navbar(
         dbc.NavbarToggler(id="navbar-toggler"),
         #dbc.Collapse(search_bar, id="navbar-collapse", navbar=True),
     ],
-    color="dark",
-    dark=True,
+    style=CONTENT_STYLE,
 )
 
 
 
-content = html.Div(style=CONTENT_STYLE)
+#content = html.Div(style=CONTENT_STYLE)
 
 
-layout = html.Div([navbar, sidebar, content])
->>>>>>> ab252f155652a6a328b974b617667227f6979b6d
+layout = html.Div([navbar, sidebar])
