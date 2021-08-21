@@ -26,7 +26,7 @@ CONTENT_STYLE = {
     "padding": "2rem 1rem",
 }
 
-sidebar = html.Div(
+layout = html.Div(
     [
         html.H2("Sidebar", className="display-4"),
         html.Hr(),
@@ -44,6 +44,6 @@ sidebar = html.Div(
     style=SIDEBAR_STYLE,
 )
 
-content = html.Div(style=CONTENT_STYLE)
+# content = html.Div(style=CONTENT_STYLE)
 
-layout = html.Div([sidebar, content])
+# html.Div([sidebar])

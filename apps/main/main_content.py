@@ -3,13 +3,16 @@ import dash_core_components as dcc
 
 colors = {"background": "#111111", "text": "#7FDBFF"}
 
+# padding for the page content
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
 
 layout = html.Div(
     id="page-content",
     className="",
-    style={
-        "backgroundColor": colors["background"],
-    },
     children=[
         html.H1(
             children="Hello Team 18",
@@ -39,4 +42,5 @@ layout = html.Div(
             },
         ),
     ],
+    style=CONTENT_STYLE,
 )

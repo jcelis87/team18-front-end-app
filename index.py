@@ -14,8 +14,7 @@ from apps.main import main_nav, main_content, main_footer
 
 # main layout
 app.layout = html.Div(
-    className="wrapper",
-    children=[
+    [
         dcc.Location(id="url", refresh=False),
         main_nav.layout,
         main_content.layout,
