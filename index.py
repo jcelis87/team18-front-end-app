@@ -9,16 +9,17 @@ from app import app, server
 from callbacks import register_callbacks
 
 # Dash custom modules
-from apps.main import main_nav, main_content, main_footer
+from apps.main import main_header, main_sidebar, main_content, main_footer
 
 
 # main layout
 app.layout = html.Div(
     [
         dcc.Location(id="url", refresh=False),
-        main_nav.layout,
+        main_header.layout,
+        main_sidebar.layout,
         main_content.layout,
-        #main_footer.layout,
+        # main_footer.layout,
     ],
 )
 
