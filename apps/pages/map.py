@@ -10,7 +10,11 @@ import pandas as pd
 
 from app import app
 from apps.utils.get_data import get_all_geonames
-from apps.utils.create_data_frame import create_data_frame, get_map_data
+from apps.utils.create_data_frame import (
+    create_data_frame,
+    get_map_data,
+    create_data_frame_geojson,
+)
 from apps.components import table
 
 # Get Data from Geonames API
@@ -62,7 +66,13 @@ layout = html.Div(
                     # url="http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}"
                 ),
                 dl.LayerGroup(id=MARKER_GROUP_ID),
-                dl.GeoJSON(data=geojson, id="geojson"),
+                dl.GeoJSON(
+                    data=geojson,
+                    id="geojson",
+                    cluster=True,
+                    zoomToBoundsOnClick=True,
+                    superClusterOptions={"radius": 100},
+                ),
                 dl.GestureHandling(),
             ],
             id=MAP_ID,

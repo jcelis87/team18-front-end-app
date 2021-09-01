@@ -7,7 +7,7 @@ import dash_html_components as html
 from app import app
 
 # call modules needed for callbacks
-from apps.pages import map, photos, dashboard
+from apps.pages import map, photos, dashboard, map_overlay
 
 # Entire callbacks definition
 def register_callbacks(app):
@@ -19,6 +19,8 @@ def register_callbacks(app):
             return photos.layout
         elif pathname == "/dashboard":
             return dashboard.layout
+        elif pathname == "/sandbox":
+            return map_overlay.layout
 
         # If the user tries to reach a different page, return a 404 message
         return dbc.Jumbotron(

@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 
 def create_data_frame(data):
@@ -44,7 +45,7 @@ def create_data_frame(data):
     ]
 
     for source in sources:
-        df_data[source] = df_data[source].apply(lambda x: "✔️" if x == "true" else "❌")
+        df_data[source] = df_data[source].apply(lambda x: "✔️" if x == "TRUE" else "❌")
 
     return df_data
 
@@ -61,3 +62,31 @@ def get_map_data(data):
     dicts = data.to_dict("records")
 
     return dicts
+
+
+def create_data_frame_geojson(data):
+    data = data["status"]
+
+    data_list = []
+    for point in data:
+        point_list = list(point.values())
+        data_list.append(point_list)
+
+    df_data = pd.DataFrame(data_list)
+    df_data.columns = list(data[0].keys())
+
+    return df_data
+
+
+def create_boundary_list(data):
+    data = data["status"]
+
+    data_list = []
+    for point in data:
+        point_list = list(point.values())
+        data_list.append(point_list)
+
+    df_data = pd.DataFrame(data_list)
+    df_data.columns = list(data[0].keys())
+
+    return df_data
