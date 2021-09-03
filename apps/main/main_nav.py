@@ -14,6 +14,7 @@ NAVBAR_STYLE = {
 }
 
 IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
+#IGAC_LOGO = "logo-igac.jpeg"
 
 navbar = dbc.Navbar(
     [

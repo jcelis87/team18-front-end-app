@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c142df0bf3c2cb44b0c2c22ddf266cff8b5c789bf9109c3013d9a392234ecd07"
+            "sha256": "72b5f377747a1ff3c0ee5fc38ee45e1613482ea61394fff31e249c9a448d8960"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -99,6 +99,13 @@
             "markers": "python_version >= '3'",
             "version": "==2.0.4"
         },
+        "chart-studio": {
+            "hashes": [
+                "sha256:a17283b62470306d77060b200f13f9749c807dd15613c113d36f8d057f5c7019",
+                "sha256:fd183185d6e6d31c642567145c1a862f941ca9c7695aac8b2f3ebbcbcea31a7a"
+            ],
+            "version": "==1.1.0"
+        },
         "click": {
             "hashes": [
                 "sha256:8c04c11192119b1ef78ea049e0a6f0463e4c48ef00a30160c704337586f3ad7a",
@@ -136,6 +143,13 @@
             ],
             "index": "pypi",
             "version": "==1.21.0"
+        },
+        "dash-auth": {
+            "hashes": [
+                "sha256:861006912d2124668da566b4caa3feefbbe2cc72702834a16cc64db7a7ddfbb9"
+            ],
+            "index": "pypi",
+            "version": "==1.4.1"
         },
         "dash-bootstrap-components": {
             "hashes": [
@@ -212,6 +226,13 @@
             ],
             "index": "pypi",
             "version": "==1.10.1"
+        },
+        "flask-seasurf": {
+            "hashes": [
+                "sha256:c24de02fbebca9b8ab0173160fb980e479c77cfabd539e6516738b1a885b90f1",
+                "sha256:fff90df13d9a409689081a3a1f82e2c7f76fa99bb59e50ec3e5146402ce5ce13"
+            ],
+            "version": "==0.3.1"
         },
         "future": {
             "hashes": [
@@ -474,6 +495,12 @@
             "index": "pypi",
             "version": "==2.26.0"
         },
+        "retrying": {
+            "hashes": [
+                "sha256:08c039560a6da2fe4f2c426d0766e284d3b736e355f8dd24b37367b0bb41973b"
+            ],
+            "version": "==1.3.3"
+        },
         "six": {
             "hashes": [
                 "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
@@ -496,6 +523,13 @@
             ],
             "index": "pypi",
             "version": "==8.0.1"
+        },
+        "ua-parser": {
+            "hashes": [
+                "sha256:46ab2e383c01dbd2ab284991b87d624a26a08f72da4d7d413f5bfab8b9036f8a",
+                "sha256:47b1782ed130d890018d983fac37c2a80799d9e0b9c532e734c67cf70f185033"
+            ],
+            "version": "==0.10.0"
         },
         "urllib3": {
             "hashes": [

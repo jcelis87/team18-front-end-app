@@ -32,6 +32,7 @@ dash-extensions = "*"
 requests = "*"
 python-dotenv = "*"
 rasterio = "*"
+dash-auth = "*"
 
 [dev-packages]
 

@@ -2,6 +2,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from apps.main.main_sidebar import IGAC_LOGO
 
 from app import app
 
@@ -11,11 +12,16 @@ HEADER_STYLE = {
     "top": 0,
     "left": 0,
     "right": 0,
-    "height": "3rem",
+    "height": "4rem",
     "background-color": "#f8f9fa",
 }
 
-IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
+#IGAC_LOGO = "https://www.igac.gov.co/sites/igac.gov.co/files/igac-logo.png"
+FONT = {
+    "font-size": "18pt",
+    #"text-align": "center",
+    #"align":"center"
+}
 
 
 layout = html.Div(
@@ -25,7 +31,7 @@ layout = html.Div(
             dbc.Row(
                 [
                     dbc.Col(html.Img(src=IGAC_LOGO, height="50px")),
-                    dbc.Col(dbc.NavbarBrand("IGAC", className="ml-2")),
+                    dbc.Col(dbc.NavbarBrand("Detección de Nombres Geográficos en Fotografías - IGAC", style=FONT)),
                 ],
                 align="center",
                 no_gutters=True,

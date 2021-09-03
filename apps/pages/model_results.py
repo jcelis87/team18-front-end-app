@@ -9,6 +9,7 @@ import dash_leaflet as dl
 import dash_leaflet.express as dlx
 from dash.dependencies import Output, Input, State
 import dash_table
+import requests
 
 import pandas as pd
 
@@ -32,9 +33,10 @@ IMAGE_GROUP = "1"
 MAP_ID = "map"
 MARKER_GROUP_ID = "marker-group"
 COORDINATE_CLICK_ID = "coordinate-click-id"
+API_URL = os.getenv("API_URL")
 
 
-allCoordinates = get_all_coordinates(IMAGE_GROUP)
+allCoordinates = get_all_coordinates("0")
 df_allCoordinates = create_data_frame_geojson(allCoordinates)
 allCoordinates = df_allCoordinates.to_dict("records")
 
@@ -45,8 +47,7 @@ geojson = dlx.dicts_to_geojson(
     lon="centroide_longitud",
 )
 
-image_bounds = get_all_image_boundaries(IMAGE_GROUP)
-image_bounds = image_bounds["status"]
+image_bounds = requests.get(API_URL + "/img_corners").json()
 
 image_bounds = [
     [
@@ -59,21 +60,14 @@ image_bounds = [
     ],
 ]
 
-image_url = get_image_url(IMAGE_GROUP)
-print(image_url)
+image_url = API_URL + "/image/0"
 
-allBoundaries = get_all_boundaries(IMAGE_GROUP)
+# get the boundaries of the img_to_process
+allBoundaries = get_all_boundaries("0")
 polygon_boundaries = allBoundaries["status"]
 
 polygon = dl.Polygon(positions=polygon_boundaries)
 
-
-DROP_DOWN_STYLE = {
-    "margin-left": "70px",
-    "margin-right": "70px",
-    "display": "block",
-    "z-index": "1",
-}
 
 MAP_STYLE = {
     "width": "auto",
@@ -90,31 +84,10 @@ CONTENT_STYLE = {
     "width": "auto",
 }
 
-
-options = [
-    {"label": "1", "value": "1"},
-    {"label": "2", "value": "2"},
-    {"label": "3", "value": "3"},
-    {"label": "4", "value": "4"},
-    {"label": "5", "value": "5"},
-    {"label": "6", "value": "6"},
-]
-
-
 layout = html.Div(
     id="",
     className="",
-    children=[
-        html.Div(
-            [
-                dcc.Dropdown(
-                    id="images-dropdown",
-                    options=options,
-                    value="1",
-                ),
-            ],
-            style=DROP_DOWN_STYLE,
-        ),
+    children=[        
         html.Div(
             [
                 dl.Map(
@@ -156,72 +129,72 @@ layout = html.Div(
 )
 
 
-@app.callback(
-    dash.dependencies.Output("map-table", "children"),
-    [dash.dependencies.Input("images-dropdown", "value")],
-)
-def update_image_output(value):
-    # Get Data from Geonames API
+# @app.callback(
+#     dash.dependencies.Output("map-table", "children"),
+#     [dash.dependencies.Input("images-dropdown", "value")],
+# )
+# def update_image_output(value):
+#     # Get Data from Geonames API
 
-    IMAGE_GROUP = value
+#     IMAGE_GROUP = value
 
-    allCoordinates = get_all_coordinates(IMAGE_GROUP)
-    df_allCoordinates = create_data_frame_geojson(allCoordinates)
-    allCoordinates = df_allCoordinates.to_dict("records")
+#     allCoordinates = get_all_coordinates(IMAGE_GROUP)
+#     df_allCoordinates = create_data_frame_geojson(allCoordinates)
+#     allCoordinates = df_allCoordinates.to_dict("records")
 
-    geojson = dlx.dicts_to_geojson(
-        [{**c, **dict(tooltip=c["toponimo_ocr"])} for c in allCoordinates],
-        # geographicNames,
-        lat="centroide_latitud",
-        lon="centroide_longitud",
-    )
+#     geojson = dlx.dicts_to_geojson(
+#         [{**c, **dict(tooltip=c["toponimo_ocr"])} for c in allCoordinates],
+#         # geographicNames,
+#         lat="centroide_latitud",
+#         lon="centroide_longitud",
+#     )
 
-    image_bounds = get_all_image_boundaries(IMAGE_GROUP)
-    image_bounds = image_bounds["status"]
+#     image_bounds = get_all_image_boundaries(IMAGE_GROUP)
+#     image_bounds = image_bounds["status"]
 
-    image_bounds = [
-        [
-            image_bounds["upper_left"]["latitude"],
-            image_bounds["upper_left"]["longitude"],
-        ],
-        [
-            image_bounds["lower_right"]["latitude"],
-            image_bounds["lower_right"]["longitude"],
-        ],
-    ]
+#     image_bounds = [
+#         [
+#             image_bounds["upper_left"]["latitude"],
+#             image_bounds["upper_left"]["longitude"],
+#         ],
+#         [
+#             image_bounds["lower_right"]["latitude"],
+#             image_bounds["lower_right"]["longitude"],
+#         ],
+#     ]
 
-    image_url = get_image_url(IMAGE_GROUP)
+#     image_url = get_image_url(IMAGE_GROUP)
 
-    allBoundaries = get_all_boundaries(IMAGE_GROUP)
-    polygon_boundaries = allBoundaries["status"]
+#     allBoundaries = get_all_boundaries(IMAGE_GROUP)
+#     polygon_boundaries = allBoundaries["status"]
 
-    polygon = dl.Polygon(positions=polygon_boundaries)
+#     polygon = dl.Polygon(positions=polygon_boundaries)
 
-    return html.Div(
-        [
-            dl.Map(
-                [
-                    dl.LayersControl(
-                        dl.Overlay(
-                            dl.LayerGroup(polygon), name="polygon", checked=True
-                        ),
-                    ),
-                    # dl.LayerGroup(id=MARKER_GROUP_ID),
-                    # dl.GestureHandling(),
-                    dl.ImageOverlay(opacity=0.7, url=image_url, bounds=image_bounds),
-                    dl.TileLayer(),
-                    dl.GeoJSON(data=geojson, id="geojson"),
-                ],
-                bounds=image_bounds,
-                style=MAP_STYLE,
-            ),
-            dash_table.DataTable(
-                id="table",
-                columns=[{"name": i, "id": i} for i in df_allCoordinates.columns],
-                page_current=0,
-                data=df_allCoordinates.to_dict("records"),
-                style_data_conditional=[],
-                style_table={"height": "30vh", "overflowY": "auto"},
-            ),
-        ]
-    )
+#     return html.Div(
+#         [
+#             dl.Map(
+#                 [
+#                     dl.LayersControl(
+#                         dl.Overlay(
+#                             dl.LayerGroup(polygon), name="polygon", checked=True
+#                         ),
+#                     ),
+#                     # dl.LayerGroup(id=MARKER_GROUP_ID),
+#                     # dl.GestureHandling(),
+#                     dl.ImageOverlay(opacity=0.7, url=image_url, bounds=image_bounds),
+#                     dl.TileLayer(),
+#                     dl.GeoJSON(data=geojson, id="geojson"),
+#                 ],
+#                 bounds=image_bounds,
+#                 style=MAP_STYLE,
+#             ),
+#             dash_table.DataTable(
+#                 id="table",
+#                 columns=[{"name": i, "id": i} for i in df_allCoordinates.columns],
+#                 page_current=0,
+#                 data=df_allCoordinates.to_dict("records"),
+#                 style_data_conditional=[],
+#                 style_table={"height": "30vh", "overflowY": "auto"},
+#             ),
+#         ]
+#     )
