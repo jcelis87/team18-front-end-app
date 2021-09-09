@@ -2,6 +2,8 @@
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
+from dotenv import load_dotenv
+#import gunicorn
 
 import dash_auth
 from dash.dependencies import Input, Output
@@ -73,4 +75,6 @@ app.layout = html.Div(
 register_callbacks(app)
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    load_dotenv()
+    app.run_server(debug=True)    
+    #gunicorn.run("app:app", port=8050, reload=True)

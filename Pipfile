@@ -33,6 +33,8 @@ requests = "*"
 python-dotenv = "*"
 rasterio = "*"
 dash-auth = "*"
+gunicorn = "*"
+gevent = "*"
 
 [dev-packages]
 

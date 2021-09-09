@@ -124,26 +124,35 @@ def click_coord(e):
 )
 def state_hover(feature, data):
     if feature is not None:
-        marker_id = df_allNames[
-            df_allNames["geographic_name"] == feature["properties"]["geographic_name"]
-        ]["name_id"].values
-        print(marker_id[0])
-        print(df_allNames[df_allNames["name_id"] == marker_id[0]]["name_id"].values[0])
+        print(df_allNames.columns)
+        print(feature["properties"])
+        print(type(feature["properties"]["cluster"]))
+        styles = []
+        if feature["properties"]["cluster"]:
+            raise dash.exceptions.PreventUpdate
+        try:
+            marker_id = df_allNames[
+                df_allNames["geographic_name"] == feature["properties"]["tooltip"]
+            ]["name_id"].values
+            print(marker_id[0])
+            print(df_allNames[df_allNames["name_id"] == marker_id[0]]["name_id"].values[0])        
 
-        styles = [
-            {
-                "if": {
-                    "filter_query": "{{name_id}} = {value}".format(
-                        name_id=df_allNames[df_allNames["name_id"] == marker_id[0]][
-                            "name_id"
-                        ].values[0],
-                        value=marker_id[0],
-                    ),
+            styles = [
+                {
+                    "if": {
+                        "filter_query": "{{name_id}} = {value}".format(
+                            name_id=df_allNames[df_allNames["name_id"] == marker_id[0]][
+                                "name_id"
+                            ].values[0],
+                            value=marker_id[0],
+                        ),
+                    },
+                    "backgroundColor": "#FF4136",
+                    "color": "white",
                 },
-                "backgroundColor": "#FF4136",
-                "color": "white",
-            },
-        ]
+            ]
+        except (KeyError, IndexError):
+            print("wrong key")        
 
         return styles
 

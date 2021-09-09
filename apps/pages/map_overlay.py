@@ -92,12 +92,12 @@ CONTENT_STYLE = {
 
 
 options = [
-    {"label": "1", "value": "1"},
-    {"label": "2", "value": "2"},
-    {"label": "3", "value": "3"},
-    {"label": "4", "value": "4"},
-    {"label": "5", "value": "5"},
-    {"label": "6", "value": "6"},
+    {"label": "M1390 F-42286", "value": "1"},
+    {"label": "M1390 F-42290", "value": "2"},
+    {"label": "C-1974 F-238", "value": "3"},
+    {"label": "C-2070 F-252", "value": "4"},
+    {"label": "C-1974 F-250", "value": "5"},
+    {"label": "C-1974 F-240", "value": "6"},
 ]
 
 

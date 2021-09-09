@@ -61,6 +61,7 @@ image_bounds = [
 ]
 
 image_url = API_URL + "/image/0"
+print(image_url)
 
 # get the boundaries of the img_to_process
 allBoundaries = get_all_boundaries("0")

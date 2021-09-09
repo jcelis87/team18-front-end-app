@@ -17,3 +17,9 @@ For installing pipfile
 
 Or for installing Pipfile
 ``pipenv install``
+
+To run in a development environment
+
+```
+gunicorn -b ip_address:8050 index:server
+```
