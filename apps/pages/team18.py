@@ -39,8 +39,8 @@ layout = html.Div([
                 ),                
                 dbc.Col(
                     dcc.Markdown("""
-                    #### Deniz Sáchez S.
-                    Temática grupo interno de trabajo índices, DANE
+                    #### Deniz Sánchez S.
+                    Matemática grupo interno de trabajo índices, DANE
                     Matemática, Universidad Nacional de Colombia (Bogotá)
                     Magister en Ciencias Estadística, Universidad Nacional de Colombia (Bogotá)
 

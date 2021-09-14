@@ -76,5 +76,5 @@ register_callbacks(app)
 
 if __name__ == "__main__":
     load_dotenv()
-    app.run_server(debug=True)    
+    app.run_server(debug=True, port=80)    
     #gunicorn.run("app:app", port=8050, reload=True)

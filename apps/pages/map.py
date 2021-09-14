@@ -17,7 +17,6 @@ from apps.utils.create_data_frame import (
 )
 from apps.components import table
 
-# Get Data from Geonames API
 
 
 allNames = get_all_geonames()
@@ -78,11 +77,11 @@ layout = html.Div(
             id=MAP_ID,
             style=MAP_STYLE,
         ),
-        html.P("Coordinate (click on map):"),
+        html.P("Click en el mapa para ver las coordenadas:"),
         html.Div(id=COORDINATE_CLICK_ID),
-        html.Div(html.P("Hola"), id="state"),
+        html.Div(html.P(""), id="state"),
         html.Div(
-            html.P("Hola"),
+            html.P(""),
             id="name-id-row",
         ),
         html.Div(
@@ -101,7 +100,6 @@ layout = html.Div(
     ],
     style=CONTENT_STYLE,
 )
-
 
 @app.callback(Output(MARKER_GROUP_ID, "children"), [Input(MAP_ID, "click_lat_lng")])
 def set_marker(x):
@@ -124,9 +122,9 @@ def click_coord(e):
 )
 def state_hover(feature, data):
     if feature is not None:
-        print(df_allNames.columns)
-        print(feature["properties"])
-        print(type(feature["properties"]["cluster"]))
+        # print(df_allNames.columns)
+        # print(feature["properties"])
+        # print(type(feature["properties"]["cluster"]))
         styles = []
         if feature["properties"]["cluster"]:
             raise dash.exceptions.PreventUpdate
@@ -134,8 +132,8 @@ def state_hover(feature, data):
             marker_id = df_allNames[
                 df_allNames["geographic_name"] == feature["properties"]["tooltip"]
             ]["name_id"].values
-            print(marker_id[0])
-            print(df_allNames[df_allNames["name_id"] == marker_id[0]]["name_id"].values[0])        
+            # print(marker_id[0])
+            # print(df_allNames[df_allNames["name_id"] == marker_id[0]]["name_id"].values[0])        
 
             styles = [
                 {
