@@ -83,7 +83,7 @@ layout = html.Div([
                     Profesor Asistente Universidad Francisco de Paula Santander, Cúcuta, Colombia. 
                     Candidato a doctor en Ingeniería Eléctrica y Computación, University of Delaware, Newark, DE, USA
 
-                    [Contactar en LinkedIn](https://www.linkedin.com/in/sergio-sepúlveda-653724109/)
+                    [Contactar en LinkedIn](https://www.linkedin.com/in/sergio-sepulveda-mora/)
                     """
                     ),
                     #width=3

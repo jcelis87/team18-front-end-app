@@ -1,9 +1,8 @@
-# Dash basic libraries
+# region Imports
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 from dotenv import load_dotenv
-#import gunicorn
 
 import dash_auth
 from dash.dependencies import Input, Output
@@ -16,7 +15,7 @@ from callbacks import register_callbacks
 
 # Dash custom modules
 from apps.main import main_header, main_sidebar, main_content, main_footer
-
+# endregion
 
 USERNAMEINFO = [['igac','Team#18']]
 auth = dash_auth.BasicAuth(app,USERNAMEINFO)
@@ -32,49 +31,9 @@ app.layout = html.Div(
     ],
 )
 
-# app.layout = dbc.Container(
-#     [
-#         dbc.Row(
-#             dbc.Col(
-#                 #html.P("Header"),
-#                 main_header.layout,
-#                 width=12,
-#                 style={"height": "100%", "background-color": "red"}
-#             ),
-#             className="h-auto",
-#         ),
-#         dbc.Row(
-#             [
-#                 dbc.Col(
-#                     #html.P("Sidebar"),
-#                     main_sidebar.layout,
-#                     width=3,
-#                     style={"height": "100%", "background-color": "blue"}
-#                 ),
-#                 dbc.Col(
-#                     main_content.layout,
-#                     width=9,
-#                     style={"height": "100%", "background-color": "cyan"}
-#                 )            
-#             ],
-#             className="h-75",
-#         ),
-#         dbc.Row(
-#             dbc.Col(
-#                 main_footer.layout,
-#                 width=12,
-#                 style={"height": "100%", "background-color":"red"}
-#             ),
-#             className="h-auto"
-#         ),
-#     ],
-#     style={"height": "100vh"}
-# )
-
 # Callbacks register
 register_callbacks(app)
 
 if __name__ == "__main__":
     load_dotenv()
-    app.run_server(debug=True, port=80)    
-    #gunicorn.run("app:app", port=8050, reload=True)
+    app.run_server(host="0.0.0.0", debug=False, port=8050, dev_tools_props_check=False)
