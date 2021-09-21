@@ -122,18 +122,13 @@ def click_coord(e):
 )
 def state_hover(feature, data):
     if feature is not None:
-        # print(df_allNames.columns)
-        # print(feature["properties"])
-        # print(type(feature["properties"]["cluster"]))
         styles = []
         if feature["properties"]["cluster"]:
             raise dash.exceptions.PreventUpdate
         try:
             marker_id = df_allNames[
                 df_allNames["geographic_name"] == feature["properties"]["tooltip"]
-            ]["name_id"].values
-            # print(marker_id[0])
-            # print(df_allNames[df_allNames["name_id"] == marker_id[0]]["name_id"].values[0])        
+            ]["name_id"].values      
 
             styles = [
                 {
@@ -153,18 +148,6 @@ def state_hover(feature, data):
             print("wrong key")        
 
         return styles
-
-
-# @app.callback(
-#     Output("table", "data"),
-#     Input("table", "page_current"),
-#     Input("table", "page_size"),
-# )
-# def update_table(page_current, page_size):
-#     return df_allNames.iloc[
-#         page_current * page_size : (page_current + 1) * page_size
-#     ].to_dict("records")
-
 
 @app.callback(
     Output("name-id-row", "children"),
